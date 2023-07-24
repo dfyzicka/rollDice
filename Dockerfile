@@ -1,12 +1,14 @@
-# установка базового образа (host OS)
-FROM python:3.8
-# установка рабочей директории в контейнере
-WORKDIR /code
-# копирование файла зависимостей в рабочую директорию
-COPY requirements.txt .
-# установка зависимостей
-RUN pip install -r requirements.txt
-# копирование содержимого локальной директории src в рабочую директорию
-COPY .  .
-# команда, выполняемая при запуске контейнера
-CMD [ "python", "./bot.py" ]
+FROM python:3.9-alpine
+
+ENV PYTHONFAULTHANDLER=1 \
+     PYTHONUNBUFFERED=1 \
+     PYTHONDONTWRITEBYTECODE=1 \
+     PIP_DISABLE_PIP_VERSION_CHECK=on
+
+RUN apk --no-cache add ffmpeg
+
+WORKDIR /app
+COPY . .
+RUN pip install -r requirements.txt --no-cache-dir
+
+CMD ["python", "bot.py"]%
