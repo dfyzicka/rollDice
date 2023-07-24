@@ -24,6 +24,11 @@ To run the code, download and extract to a folder. You will need to use the Bot 
 
 `/PATH/TO/bot.py [YOUR_TOKEN_HERE]`
 
+##Docker run
+   
+   переименуйте файл ex.env в .env
+    mv ex.env .env
+
 ## Troubleshooting
 
 If you are receiving an error that says `Server response could not be decoded using UTF-8`, make the following changes to the python-telegram-bot requests.py file: [Bug Fix Diff](https://github.com/python-telegram-bot/python-telegram-bot/pull/1623/files)
