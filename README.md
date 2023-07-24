@@ -37,7 +37,7 @@
 колонируйте текущий репозиторий 
    git clone https://github.com/dfyzicka/rollDice.git
 перейдите в папку 
-   cd rollBot/ 
+   cd rollDice/ 
 переименуйте файл ex.env в .env и укажите в нём свой токен для теграмбота
     mv ex.env .env
 соберите контейнер
