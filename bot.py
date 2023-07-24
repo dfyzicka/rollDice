@@ -12,33 +12,35 @@ from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 from codecs import encode,decode
 from datetime import datetime
 from ast import literal_eval
+from dotenv import load_dotenv
 
 ladder = {
-    8  : 'Legendary',
-    7  : 'Epic',
-    6  : 'Fantastic',
-    5  : 'Superb',
-    4  : 'Great',
-    3  : 'Good',
-    2  : 'Fair',
-    1  : 'Average',
-    0  : 'Mediocre',
-    -1 : 'Poor',
-    -2 : 'Terrible'
+    8  : 'Легендарный',
+    7  : 'Эпический',
+    6  : 'Фантастический',
+    5  : 'Превосходный',
+    4  : 'Отличный',
+    3  : 'Хороший',
+    2  : 'Хзваще',
+    1  : 'Обычный',
+    0  : 'Посредственный',
+    -1 : 'Хуйский',
+    -2 : 'Говнище ужастное'
 }
+
 
 def get_ladder(result):
     if result > 8:
         return 'Beyond Legendary'
     elif result < -2:
-        return 'Terrible'
+        return 'зашкварился'
     else:
         return ladder[result]
 
-fate_options = { 
-        -1 : '[-]', 
-        0  : '[  ]', 
-        1  : '[+]' 
+fate_options = {
+        -1 : '[-]',
+        0  : '[  ]',
+        1  : '[+]'
     }
 
 async def rf(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -94,7 +96,7 @@ async def process(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
                     highest = False
                     lowest = False
                     if dice.group(3) and dice.group(3)[0] == '!' and int(dice.group(2)) > 1:
-                        explode = True 
+                        explode = True
                     elif dice.group(3) and dice.group(3)[0] in ['h','H']:
                         highest = True
                     elif dice.group(3) and dice.group(3)[0] in ['l','L']:
@@ -110,7 +112,7 @@ async def process(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
                         sides = int(sides)
 
                     while dice_num > 0:
-                        
+
                         last_roll = random.randint(random_start_num, sides)
                         visual_last_roll = plus + str(last_roll)
                         if is_fate:
@@ -131,7 +133,7 @@ async def process(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
                         if not (explode and last_roll == sides):
                             dice_num -= 1
 
-                        if len(plus) == 0: 
+                        if len(plus) == 0:
                             # Adds all results to result unless it is the first one
                             plus = ' + '
 
@@ -197,8 +199,10 @@ async def help(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_text(response, parse_mode='HTML')
     #job = context.job
     #context.bot.send_message(chat_id=update.message.chat_id, text=response, parse_mode='HTML', disable_web_page_preview=True)
-    
-TOKEN = sys.argv[1]
+
+load_dotenv(".env")
+import os
+TOKEN = os.getenv("TOKEN")
 
 formatter = logging.Formatter('====> %(asctime)s | %(name)s | %(levelname)s | %(message)s')
 stream_handler = logging.StreamHandler(sys.stdout)
