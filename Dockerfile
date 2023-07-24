@@ -9,4 +9,4 @@ RUN pip install -r requirements.txt
 # копирование содержимого локальной директории src в рабочую директорию
 COPY .  .
 # команда, выполняемая при запуске контейнера
-CMD [ "python", "./run.py" ]
+CMD [ "python", "./bot.py" ]
