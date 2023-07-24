@@ -25,9 +25,16 @@ To run the code, download and extract to a folder. You will need to use the Bot 
 `/PATH/TO/bot.py [YOUR_TOKEN_HERE]`
 
 ##Docker run
-   
-   переименуйте файл ex.env в .env
+колонируйте текущий репозиторий 
+   git clone https://github.com/dfyzicka/rollDice.git
+перейдите в папку 
+   cd rollBot 
+переименуйте файл ex.env в .env и укажите в нём свой токен для теграмбота
     mv ex.env .env
+соберите контейнер
+   docker build -t rolldice .
+запустите его
+   docker run -d --restart always rolldice
 
 ## Troubleshooting
 
