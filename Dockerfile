@@ -7,6 +7,6 @@ COPY requirements.txt .
 # установка зависимостей
 RUN pip install -r requirements.txt
 # копирование содержимого локальной директории src в рабочую директорию
-COPY app/  .
+COPY .  .
 # команда, выполняемая при запуске контейнера
 CMD [ "python", "./run.py" ]
