@@ -40,7 +40,7 @@
    
 перейдите в папку 
 
-   cd rollDice/
+    cd rollDice/
    
 переименуйте файл ex.env в .env и укажите в нём свой токен для теграмбота
 
@@ -48,11 +48,11 @@
     
 соберите контейнер
 
-   docker build -t rolldice .
+    docker build -t rolldice .
    
 запустите его
 
-   docker run -d --restart always rolldice
+    docker run -d --restart always rolldice
    
 
 ## Troubleshooting
